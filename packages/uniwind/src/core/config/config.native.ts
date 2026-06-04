@@ -4,7 +4,7 @@ import { StyleDependency } from '../../common/consts'
 import { UniwindListener } from '../listener'
 import { Logger } from '../logger'
 import { UniwindStore } from '../native'
-import type { CSSVariables, GenerateStyleSheetsCallback, ThemeName } from '../types'
+import type { CSSVariables, DeviceFlags, GenerateStyleSheetsCallback, ThemeName } from '../types'
 import { UniwindConfigBuilder as UniwindConfigBuilderBase } from './config.common'
 
 class UniwindConfigBuilder extends UniwindConfigBuilderBase {
@@ -49,6 +49,17 @@ class UniwindConfigBuilder extends UniwindConfigBuilderBase {
         UniwindStore.runtime.insets.left = insets.left ?? 0
         UniwindStore.runtime.insets.right = insets.right ?? 0
         UniwindListener.notify([StyleDependency.Insets])
+    }
+
+    updateDeviceFlags(flags: DeviceFlags) {
+        const nextIsTablet = flags.isTablet ?? false
+
+        if (UniwindStore.runtime.device.isTablet === nextIsTablet) {
+            return
+        }
+
+        UniwindStore.runtime.device.isTablet = nextIsTablet
+        UniwindListener.notify([StyleDependency.DeviceFlags])
     }
 
     protected __reinit(generateStyleSheetCallback: GenerateStyleSheetsCallback, themes: Array<string>) {

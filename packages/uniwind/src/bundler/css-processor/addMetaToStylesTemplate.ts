@@ -71,6 +71,7 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
                     focus,
                     disabled,
                     dataAttributes,
+                    tablet,
                     ...rest
                 } = style
 
@@ -128,6 +129,10 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
                     dependencies.push(StyleDependency.FontScale)
                 }
 
+                if (tablet !== null) {
+                    dependencies.push(StyleDependency.DeviceFlags)
+                }
+
                 return {
                     entries,
                     minWidth,
@@ -143,6 +148,7 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
                     active,
                     focus,
                     disabled,
+                    tablet,
                     importantProperties: importantProperties
                         ?.map(property => property.startsWith('--') ? property : toCamelCase(property))
                         .map(makeSafeForSerialization) ?? [],
@@ -157,6 +163,7 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
                         focus !== null,
                         disabled !== null,
                         dataAttributes !== null,
+                        tablet !== null,
                     ].filter(Boolean).length,
                 }
             })

@@ -27,4 +27,11 @@ describe('Styles Metadata', () => {
         expect(stylesheet['bg-background'][0].dependencies).toContain(StyleDependency.Theme)
         expect(stylesheet['bg-foreground'][0].dependencies).toContain(StyleDependency.Theme)
     })
+
+    test('Tablet Style Dependency', async () => {
+        const { stylesheet } = await compileMetadata()
+
+        expect(stylesheet['tablet:bg-background'][0].tablet).toBe(true)
+        expect(stylesheet['tablet:bg-background'][0].dependencies).toContain(StyleDependency.DeviceFlags)
+    })
 })

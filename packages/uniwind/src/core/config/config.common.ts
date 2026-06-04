@@ -4,7 +4,7 @@ import { ColorScheme, StyleDependency } from '../../common/consts'
 import type { GetCSSVariable } from '../../hooks/useCSSVariable/useCSSVariable'
 import { getCSSVariable } from '../../hooks/useCSSVariable/useCSSVariable'
 import { UniwindListener } from '../listener'
-import type { CSSVariables, GenerateStyleSheetsCallback, ThemeName } from '../types'
+import type { CSSVariables, DeviceFlags, GenerateStyleSheetsCallback, ThemeName } from '../types'
 
 const SYSTEM_THEME = 'system' as const
 // Platform.constants is not defined in RNW
@@ -106,6 +106,11 @@ export class UniwindConfigBuilder {
 
     // oxlint-disable-next-line typescript/no-unused-vars
     updateInsets(insets: Insets) {
+        // noop
+    }
+
+    // oxlint-disable-next-line typescript/no-unused-vars
+    updateDeviceFlags(flags: DeviceFlags) {
         // noop
     }
 

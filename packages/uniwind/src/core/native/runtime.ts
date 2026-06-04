@@ -23,6 +23,9 @@ export const UniwindRuntime = {
         bottom: 0,
         right: 0,
     },
+    device: {
+        isTablet: false,
+    },
     colorMix,
     pixelRatio: value => value * PixelRatio.get(),
     cubicBezier: () => '',

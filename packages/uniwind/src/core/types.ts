@@ -23,6 +23,7 @@ export type Style = {
     focus: boolean | null
     disabled: boolean | null
     dataAttributes: Record<string, string> | null
+    tablet: boolean | null
 }
 
 export type StyleSheets = Record<string, Array<Style>>
@@ -54,6 +55,9 @@ export type UniwindRuntime = {
         bottom: number
         left: number
         right: number
+    }
+    device: {
+        isTablet: boolean
     }
     hairlineWidth: number
     pixelRatio: (value: number) => number
@@ -99,5 +103,9 @@ export type ComponentState = {
 }
 
 export type CSSVariables = Record<string, string | number>
+
+export type DeviceFlags = {
+    isTablet?: boolean
+}
 
 export type UniwindContextType = React.ContextType<typeof UniwindContext>

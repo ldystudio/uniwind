@@ -137,6 +137,7 @@ class UniwindStoreBuilder {
                     || (style.active !== null && state?.isPressed !== style.active)
                     || (style.focus !== null && state?.isFocused !== style.focus)
                     || (style.disabled !== null && state?.isDisabled !== style.disabled)
+                    || (style.tablet !== null && this.runtime.device.isTablet !== style.tablet)
                     || (style.dataAttributes !== null && !this.validateDataAttributes(style.dataAttributes, componentProps))
                 ) {
                     continue

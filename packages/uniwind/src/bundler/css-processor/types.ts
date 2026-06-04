@@ -27,6 +27,7 @@ export type MediaQueryResolver = {
     active: boolean | null
     focus: boolean | null
     dataAttributes: Record<string, string> | null
+    tablet: boolean | null
 }
 
 type TakeArray<T> = T extends Array<any> ? T : never

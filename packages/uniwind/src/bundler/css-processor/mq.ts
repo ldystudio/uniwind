@@ -13,6 +13,12 @@ export class MQ {
         mediaQueries.forEach(mediaQuery => {
             const { condition, mediaType } = mediaQuery
 
+            if (mediaType === 'tablet') {
+                mq.tablet = true
+
+                return
+            }
+
             if (
                 [
                     Platform.Android,
@@ -88,6 +94,7 @@ export class MQ {
             focus: null,
             disabled: null,
             dataAttributes: null,
+            tablet: null,
         }
     }
 }
