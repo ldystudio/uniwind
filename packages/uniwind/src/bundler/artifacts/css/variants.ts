@@ -1,4 +1,4 @@
-const variants = ['ios', 'android', 'web', 'native', 'tv', 'android-tv', 'apple-tv']
+const variants = ['ios', 'android', 'web', 'native', 'tv', 'android-tv', 'apple-tv', 'tablet'];
 
 const generateCSSForVariants = () => {
     let css = ''

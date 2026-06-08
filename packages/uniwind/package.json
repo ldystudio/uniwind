@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@flickering/uniwind",
-    "version": "1.8.0-tablet.0",
+    "version": "1.8.0-tablet.1",
     "description": "The fastest Tailwind bindings for React Native",
     "homepage": "https://uniwind.dev",
     "author": "Unistack",
@@ -24,7 +24,7 @@
         "test:web": "jest --config jest.config.web.js",
         "test:types": "tsc --project tests/type-test/tsconfig.json",
         "test:e2e": "bun --bun playwright test",
-        "release": "release-it"
+        "release": "npm publish --registry=http://w-npm.flickering.cn/ --tag tablet"
     },
     "keywords": [
         "unistyles",
