@@ -5,6 +5,7 @@
 @custom-variant tv (@media tv);
 @custom-variant android-tv (@media android-tv);
 @custom-variant apple-tv (@media apple-tv);
+@custom-variant tablet (@media tablet);
 
 @utility h-screen-safe {
     height: calc(100vh - (env(safe-area-inset-top) + env(safe-area-inset-bottom)));
@@ -423,4 +424,10 @@
            @slot;
        }
    }
+}
+
+
+@theme {
+    --color-background: unset;
+    --app-foreground: unset;
 }
