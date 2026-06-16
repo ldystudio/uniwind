@@ -53,6 +53,28 @@ const hasThemedVarDependency = (varName: string, Processor: ProcessorBuilder, vi
     })
 }
 
+const hasInsetsVarDependency = (varName: string, Processor: ProcessorBuilder, visited = new Set<string>()): boolean => {
+    if (visited.has(varName)) {
+        return false
+    }
+
+    visited.add(varName)
+
+    const globalVarValue = Processor.vars[varName]
+
+    if (typeof globalVarValue !== 'string') {
+        return false
+    }
+
+    if (globalVarValue.includes('rt.insets')) {
+        return true
+    }
+
+    return extractVarsFromString(globalVarValue).some(usedVarName => {
+        return hasInsetsVarDependency(usedVarName, Processor, visited)
+    })
+}
+
 export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlatform: Platform) => {
     const stylesheetsEntries = Object.entries(Processor.stylesheets as StyleSheetTemplate)
         .map(([className, stylesPerMediaQuery]) => {
@@ -121,7 +143,7 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
                     dependencies.push(StyleDependency.Dimensions)
                 }
 
-                if (stringifiedEntries.includes('rt.insets')) {
+                if (stringifiedEntries.includes('rt.insets') || usedVars.some(usedVarName => hasInsetsVarDependency(usedVarName, Processor))) {
                     dependencies.push(StyleDependency.Insets)
                 }
 

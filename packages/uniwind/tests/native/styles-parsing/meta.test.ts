@@ -35,6 +35,12 @@ describe('Styles Metadata', () => {
         expect(stylesheet['tablet:bg-background'][0].dependencies).toContain(StyleDependency.DeviceFlags)
     })
 
+    test('Indirect Insets Style Dependency', async () => {
+        const { stylesheet } = await compileMetadata()
+
+        expect(stylesheet['p-safe-var'][0].dependencies).toContain(StyleDependency.Insets)
+    })
+
     test('Combined variants', async () => {
         const { stylesheet } = await compileMetadata()
 
